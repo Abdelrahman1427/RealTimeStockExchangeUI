@@ -1,72 +1,64 @@
-# Angular 16 example project: CRUD with Rest API
+# RealTimeStockExchange Application
 
-Build an Angular 16 CRUD example App to consume Rest APIs, display, modify & search data.
+## Backend API Guide
 
-Tutorial Application in that:
-- Each Tutorial has id, title, description, published status.
-- We can create, retrieve, update, delete Tutorials.
-- There is a Search bar for finding Tutorials by title.
+### Running the Backend (RealTimeStockExchangeAPI)
+1. Press Ctrl+F5 to run the app.
 
-![angular-16-crud-example](angular-16-crud-example.png)
+### Authentication
+1. **POST /api/Auth/login**
+   - In the Swagger browser window, select POST /api/Auth/login, and then click on "Try it out."
+   - Enter the following credentials in the Request body:
+     ```json
+     { "UserName": "egid", "Password": "egid" }
+     ```
+   - Click "Execute" to get the token.
 
-Run `ng serve --port 8081` for a dev server. Navigate to `http://localhost:8081/`. The app will automatically reload if you change any of the source files.
+### Order Operations
+2. **POST /API/orders**
+   - Select POST /API/orders and click "Try it out."
+   - Enter the order details in the Request body:
+     ```json
+     { "StockSymbol": "string", "OrderType": "string", "Quantity": number }
+     ```
+   - Click "Execute." The response body should show "Order created successfully."
 
-For instruction, please visit:
-> [Angular 16 CRUD example with Rest API](https://www.bezkoder.com/angular-16-crud-example/)
+3. **GET /API/orders**
+   - Select GET /API/orders and click "Try it out."
+   - Click "Execute." The response body should display a list of ordered items (Stock Symbol, Order Type, Quantity).
 
-More Practice:
-> [Angular 16 Pagination example](https://www.bezkoder.com/angular-16-pagination-ngx/)
+### Stock Operations
+4. **GET /api/Stock**
+   - Select GET /api/Stock and click "Try it out."
+   - Click "Execute." The response body should display a list of Stock items (Symbol, Current Price, TimeStamps).
 
-> [Angular 16 JWT Authentication & Authorization example](https://www.bezkoder.com/angular-16-jwt-auth/)
+5. **GET /api/Stock/{symbol}/history**
+   - Select GET /api/Stock/{symbol}/history and click "Try it out."
+   - Enter the symbol in the Parameters section.
+   - Click "Execute." The response body should display the history of the specified symbol.
 
-> [Angular 16 File upload example with Progress bar](https://www.bezkoder.com/angular-16-file-upload/)
+**Note:**
+- All live data comes from [IEX Cloud](https://api.iex.cloud/v1/data/).
 
-> [Angular 16 Form Validation example](https://www.bezkoder.com/angular-16-form-validation/)
+## Frontend Angular Guide
 
-Fullstack with Node:
+### Frontend Guidelines (RealTimeStockExchangeUI)
+1. Open the project in VS Code and write in the terminal:
+   - `npm install`
+   - `ng serve -o` to run the project. Open it in [http://localhost:4200/](http://localhost:4200/).
 
-> [Angular 16 + Node Express + MySQL example](https://www.bezkoder.com/angular-16-node-js-express-mysql/)
+### Pages:
 
-> [Angular 16 + Node Express + PostgreSQL example](https://www.bezkoder.com/angular-16-node-js-express-postgresql/)
+1. **Home Page:**
+   - Navigate to [http://localhost:4200/stocks](http://localhost:4200/stocks).
+   - Displays a list table of stocks from the API GET /api/Stock.
 
-> [Angular 16 + Node Express + MongoDB example](https://www.bezkoder.com/angular-16-node-js-express-mongodb/)
+2. **Add History Page:**
+   - Navigate to [http://localhost:4200/stocks](http://localhost:4200/stocks).
+   - Enter a symbol in the input and click the "History" button to return the history of the specified symbol using the API GET /api/Stock/{symbol}/history.
 
-> [Angular 16 + Node Express: File upload example](https://www.bezkoder.com/angular-16-node-express-file-upload/)
+3. **Order Page:**
+   - Navigate to [http://localhost:4200/add](http://localhost:4200/add).
+   - In the input, add a symbol and quantity, then click "Buy" or "Sell" using the API POST /API/orders. Reload the page to display the added order using the API GET /API/orders.
 
-Fullstack with Spring Boot:
 
-> [Angular 16 + Spring Boot example](https://www.bezkoder.com/spring-boot-angular-16-crud/)
-
-> [Angular 16 + Spring Boot + MySQL example](https://www.bezkoder.com/spring-boot-angular-16-mysql/)
-
-> [Angular 16 + Spring Boot + PostgreSQL example](https://www.bezkoder.com/spring-boot-angular-16-postgresql/)
-
-> [Angular 16 + Spring Boot + MongoDB example](https://www.bezkoder.com/spring-boot-angular-16-mongodb/)
-
-> [Angular 16 + Spring Boot: File upload example](https://www.bezkoder.com/angular-16-spring-boot-file-upload/)
-
-Fullstack with Django:
-> [Angular + Django example](https://www.bezkoder.com/django-angular-13-crud-rest-framework/)
-
-> [Angular + Django + MySQL](https://www.bezkoder.com/django-angular-mysql/)
-
-> [Angular + Django + PostgreSQL](https://www.bezkoder.com/django-angular-postgresql/)
-
-> [Angular + Django + MongoDB](https://www.bezkoder.com/django-angular-mongodb/)
-
-Security:
-> [Angular 16 + Spring Boot: JWT Authentication and Authorization example](https://www.bezkoder.com/angular-16-spring-boot-jwt-auth/)
-
-> [Angular 16 + Node.js Express: JWT Authentication and Authorization example](https://www.bezkoder.com/node-js-angular-16-jwt-auth/)
-
-Serverless with Firebase:
-> [Angular 16 Firebase CRUD with Realtime DataBase](https://www.bezkoder.com/angular-16-firebase-crud/)
-
-> [Angular 16 Firestore CRUD example](https://www.bezkoder.com/angular-16-firestore-crud/)
-
-> [Angular 16 Firebase Storage: File Upload/Display/Delete example](https://www.bezkoder.com/angular-16-firebase-storage/)
-
-Integration (run back-end & front-end on same server/port)
-> [How to integrate Angular with Node Restful Services](https://bezkoder.com/integrate-angular-12-node-js/)
-
-> [How to Integrate Angular with Spring Boot Rest API](https://bezkoder.com/integrate-angular-12-spring-boot/)
